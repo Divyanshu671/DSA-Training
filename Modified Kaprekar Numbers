@@ -1,0 +1,25 @@
+
+def kaprekarNumbers(p, q):
+    # Write your code here
+    f=1
+    for i in range(p,q+1):
+        if i==1 or i==0:
+            print(i,end=" ")
+            f=0
+        if i>3:
+            c=len(str(i))
+            n=str(i*i)
+            d1=n[:len(n)-c]
+            d2=n[len(n)-c:]
+            if int(d1)+int(d2)==i:
+                print(i,end=" ")
+                f=0
+    if f:
+        print("INVALID RANGE")
+
+if __name__ == '__main__':
+    p = int(input().strip())
+
+    q = int(input().strip())
+
+    kaprekarNumbers(p, q)
