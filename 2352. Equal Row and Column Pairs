@@ -1,0 +1,18 @@
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        d={}
+        l=[]
+        c=0
+        for i in range(len(grid)):
+            s=[]
+            for j in range(len(grid)):
+                s.append(grid[j][i])
+            l.append(s)
+            if str(grid[i]) not in d:
+                d[str(grid[i])]=1
+            else:
+                d[str(grid[i])]+=1
+        for i in range(len(grid)):
+            if str(l[i]) in d:
+                c+=d[str(l[i])]
+        return c
