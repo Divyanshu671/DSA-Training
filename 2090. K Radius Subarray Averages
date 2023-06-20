@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> getAverages(vector<int>& nums, int k) {
+        long i,s=0;
+        if(k==0)
+            return nums;
+        int g=k;
+        k = 2*k;
+        int w=0;
+        vector<int> l;
+        for(i=0;i<nums.size();i++){
+            s+=nums[i];
+            if(i-w==k){
+                l[i-g]=s/(k+1);
+                s-=nums[w];
+                w++;
+            }
+            l.push_back(-1);
+        }
+        return l;
+    }
+};
