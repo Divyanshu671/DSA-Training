@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void search(int n,int k ,vector<int>& comb, vector<vector<int>>& all){
+        if(k==0)
+            all.push_back(comb);
+        else if(n==0){}
+        else{
+            search(n-1,k,comb,all);
+            comb.push_back(n);
+            search(n-1,k-1,comb,all);
+            comb.pop_back();
+        }
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<int> comb;
+        vector<vector<int>> all;
+        search(n,k,comb,all);
+        return all;
+    }
+};
