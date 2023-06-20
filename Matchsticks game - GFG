@@ -1,0 +1,8 @@
+class Solution {
+  public:
+    int matchGame(long long N) {
+        // code here
+        N=N%5;
+        return N==0?-1:N;
+    }
+};
