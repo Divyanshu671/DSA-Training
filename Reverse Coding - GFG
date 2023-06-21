@@ -1,0 +1,11 @@
+class Solution {
+  public:
+    int sumOfNaturals(int n) {
+        // code here
+        long m=n;
+        if(m%2==0)
+            m--;
+        m = m*(m/2+1);
+        return n%2?m%1000000007:(m+n)%1000000007;
+    }
+};
