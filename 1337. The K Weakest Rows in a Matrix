@@ -1,0 +1,21 @@
+class Solution:
+    def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
+        j=0
+        l=[]
+        while len(l)<k and j<len(mat[0]):
+            for i in range(len(mat)):
+                if mat[i][j]!=1 and mat[i][0]!=-1:
+                    l.append(i)
+                    mat[i][0]=-1
+                    if len(l)==k:
+                        break
+            j+=1
+        while len(l)<k:
+            for i in range(len(mat)):
+                if mat[i][-1]==1 and mat[i][0]!=-1:
+                    l.append(i)
+                    if len(l)==k:
+                        break
+        if len(l)==0:
+            l.append(0)
+        return l
