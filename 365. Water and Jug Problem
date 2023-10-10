@@ -1,0 +1,33 @@
+class Solution:
+    def canMeasureWater(self, jug1Capacity: int, jug2Capacity: int, targetCapacity: int) -> bool:
+        q = []
+        d = {}
+        q.append([0,0])
+        while q:
+            x1,y1 = q.pop(0)
+            if (x1,y1) not in d:
+                if x1==targetCapacity or y1==targetCapacity or x1+y1==targetCapacity:
+                    return True
+                if x1<jug1Capacity:
+                    q.append([jug1Capacity,y1])
+                if y1<jug2Capacity:
+                    q.append([x1,jug2Capacity])
+                if x1>0:
+                    q.append([0,y1])
+                if y1>0:
+                    q.append([x1,0])
+                if x1>0 and y1<jug2Capacity:
+                    s=jug2Capacity-y1
+                    if s>=x1:
+                        q.append([0,y1+x1])
+                    else:
+                        q.append([x1-s,y1+s])
+                if x1<jug1Capacity and y1>0:
+                    s=jug1Capacity-x1
+                    if s>=y1:
+                        q.append([x1+y1,0])
+                    else:
+                        q.append([x1+s,y1-s])
+                d[(x1,y1)]=1
+                print(x1,y1)
+        return False
