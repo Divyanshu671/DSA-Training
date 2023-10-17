@@ -1,0 +1,22 @@
+class Solution:
+    def rearrange(self, head):
+        # Code here
+        if not head:
+            return head
+        p=head
+        g=None
+        t=None
+        while(p.next):
+            r=p.next
+            p.next=r.next
+            r.next=t
+            t=r
+            g=p
+            if(p.next==None):
+                break
+            p=p.next
+        if(p.next):
+            g.next=p
+            p=g
+        p.next=t
+        
