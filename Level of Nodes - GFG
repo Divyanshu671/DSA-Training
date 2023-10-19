@@ -1,0 +1,20 @@
+class Solution:
+    #Function to find the level of node X.
+    def nodeLevel(self, V, adj, X):
+        # code here
+        q=[0]
+        c=0
+        d={}
+        while q:
+            p=[]
+            c+=1
+            while q:
+                x=q.pop(0)
+                for i in adj[x]:
+                    if i==X:
+                        return c
+                    if i not in d:
+                        p.append(i)
+                        d[i]=1
+                d[x]=1
+            q=p
