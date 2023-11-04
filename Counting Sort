@@ -1,0 +1,19 @@
+class Solution{
+    public:
+    //Function to arrange all letters of a string in lexicographical 
+    //order using Counting Sort.
+    string countSort(string arr){
+        // code here
+        vector<int> l(26,0);
+        for(int i=0;i<arr.size();i++){
+            l[(int)arr[i]%97]++;
+        }
+        string g;
+        for(int i=0;i<26;i++){
+            if(l[i])
+                while(l[i]--)
+                    g.push_back((char)(97+i));
+        }
+        return g;
+    }
+};
