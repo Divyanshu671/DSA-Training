@@ -1,0 +1,16 @@
+class Solution:
+    def findDifferentBinaryString(self, nums: List[str]) -> str:
+        m=len(nums[0])
+        def convert(n):
+            s=""
+            while n:
+                s=str(n%2)+s
+                n//=2
+            while len(s)<m:
+                s="0"+s
+            return s
+
+        for i in range(2**m):
+            s = convert(i)
+            if s not in nums:
+                return s
