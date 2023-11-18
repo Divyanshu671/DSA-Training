@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        Buildheap(nums);
+        return nums;
+    }
+private:
+    void heapify(vector<int>& arr,int n,int size){
+        int largest=n;
+        int left=n*2+1;
+        int right=n*2+2;
+        if(left<size && arr[largest]<arr[left]){
+            largest=left;
+        }
+        if(right<size && arr[largest]<arr[right]){
+            largest=right;
+        }
+        if(largest!=n){
+            swap(arr[largest],arr[n]);
+            heapify(arr,largest,size);
+        }
+    }
+    void Buildheap(vector<int>& arr){
+        int i,n=arr.size();
+        for(i=arr.size()/2;i>-1;i--){
+            heapify(arr,i,n);
+        }
+        for(i=arr.size()-1;i>0;i--){
+            swap(arr[i],arr[0]);
+            heapify(arr,0,i);
+        }
+    }
+};
