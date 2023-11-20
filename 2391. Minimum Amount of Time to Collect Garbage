@@ -1,0 +1,22 @@
+class Solution:
+    def garbageCollection(self, garbage: List[str], travel: List[int]) -> int:
+        d={"G":0,"P":0,"M":0}
+        for i in garbage[0]:
+            d[i]+=1
+        g,p,m=0,0,0
+        for i in range(1,len(garbage)):
+            m+=travel[i-1]
+            g+=travel[i-1]
+            p+=travel[i-1]
+            for j in range(len(garbage[i])):
+                if garbage[i][j]=="G":
+                    d["G"]+=1+g
+                    g=0
+                elif garbage[i][j]=="P":
+                    d["P"]+=1+p
+                    p=0
+                elif garbage[i][j]=="M":
+                    d["M"]+=1+m
+                    m=0
+        return d["G"]+d["P"]+d["M"]
+                
