@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<bool> t;
+    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+        int i;
+        for(i=0;i<l.size();i++){
+            check(nums,l[i],r[i]);
+        }
+        return t;
+    }
+private:
+    void check(vector<int>& nums,int l,int r){
+        vector<int> arr;
+        priority_queue<int> h;
+        for(int i=l;i<=r;i++){
+            h.push(nums[i]);
+        }
+        while(!h.empty()){
+            arr.push_back(h.top());
+            h.pop();
+        }
+        int n=arr[0]-arr[1];
+        for(int i=1;i<arr.size();i++){
+            if(arr[i-1]-arr[i]!=n){
+                t.push_back(false);
+                return;
+            }
+        }
+        t.push_back(true);
+        return;
+    }
+};
