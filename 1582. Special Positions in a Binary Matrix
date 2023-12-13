@@ -1,0 +1,18 @@
+class Solution:
+    def numSpecial(self, mat: List[List[int]]) -> int:
+        c=0
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if mat[i][j]:
+                    f=1
+                    for k in range(len(mat)):
+                        if k!=i and mat[k][j]!=0:
+                            f=0
+                            break
+                    for k in range(len(mat[0])):
+                        if k!=j and mat[i][k]!=0:
+                            f=0
+                            break
+                    if f:
+                        c+=1
+        return c
