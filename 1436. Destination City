@@ -1,0 +1,15 @@
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        string s=paths[0][1];
+        map<string,string> m;
+        int n=paths.size(),i;
+        for(i=0;i<n;i++){
+            m[paths[i][0]]=paths[i][1];
+        }
+        while(m.find(s)!=m.end()){
+            s=m[s];
+        }
+        return s;
+    }
+};
