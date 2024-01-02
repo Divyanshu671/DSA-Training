@@ -1,0 +1,19 @@
+class Solution:
+    def findMatrix(self, nums: List[int]) -> List[List[int]]:
+        l=[]
+        d={}
+        m=0
+        for i in nums:
+            if i not in d:
+                d[i]=1
+                l.append(i)
+            else:
+                d[i]+=1
+            m=max(m,d[i])
+        ans=[]
+        for i in range(m):
+            ans.append([])
+        for i in l:
+            for j in range(d[i]):
+                ans[j].append(i)
+        return ans
