@@ -1,0 +1,24 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        win={}
+        lost={}
+        for i in range(len(matches)):
+            if matches[i][0] in win:
+                win[matches[i][0]]+=1
+            else:
+                win[matches[i][0]]=1
+            if matches[i][1] in lost:
+                lost[matches[i][1]]+=1
+            else:
+                lost[matches[i][1]]=1
+        l=[]
+        for i in win:
+            if i not in lost:
+                l.append(i)
+        l.sort()
+        g=[]
+        for i in lost:
+            if lost[i]==1:
+                g.append(i)
+        g.sort()
+        return [l,g]
