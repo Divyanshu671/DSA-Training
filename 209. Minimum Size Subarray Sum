@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int ans=nums.size()+1;
+        int i=0,j=0,s=0;
+        while(j<nums.size()){
+            s+=nums[j];
+            if(ans>j-i && s>=target){
+                ans=j-i+1;
+            }
+            if(s>target){
+                while(s>target){
+                    s-=nums[i];
+                    i++;
+                    if(ans>j-i && s>=target){
+                        ans=j-i+1;
+                    }
+                }
+            }
+            j++;
+        }
+        if(ans>nums.size()) return 0;
+        return ans;
+    }
+};
