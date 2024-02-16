@@ -1,0 +1,13 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        l=[]
+        while tokens:
+            c=tokens.pop(0)
+            if c=="+" or c=="-" or c=="*" or c=="/":
+                e=l.pop()
+                f=l.pop()
+                c=int(eval(f+c+e))
+                l.append(str(c))
+            else:
+                l.append(c)
+        return int(l[0])
