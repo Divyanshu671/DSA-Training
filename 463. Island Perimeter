@@ -1,0 +1,30 @@
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        q=[]
+        d=set()
+        m=len(grid)
+        n=len(grid[0])
+
+        c=0
+        l1=[0,0,-1,1]
+        l2=[-1,1,0,0]
+        for i in range(m):
+            for j in range(n):
+                print(i,j)
+                if grid[i][j] and (i,j) not in d:
+                    d.add((i,j))
+                    q.append((i,j))
+                    while q:
+                        x,y=q.pop(0)
+                        for k in range(4):
+                            x1=x+l1[k]
+                            y1=y+l2[k]
+                            if 0<=x1<m and 0<=y1<n:
+                                if grid[x1][y1]==0:
+                                    c+=1
+                                elif (x1,y1) not in d:
+                                    d.add((x1,y1))
+                                    q.append((x1,y1))
+                            else:
+                                c+=1
+        return c
