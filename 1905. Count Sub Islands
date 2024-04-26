@@ -1,0 +1,35 @@
+class Solution:
+    def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
+        m=len(grid1)
+        n=len(grid1[0])
+        for i in range(m):
+            for j in range(n):
+                if grid2[i][j]:
+                    grid2[i][j]+=grid1[i][j]
+        print(grid2)
+        q=[]
+        c=0
+        d={}
+        l1=[0,0,-1,1]
+        l2=[-1,1,0,0]
+        for i in range(m):
+            for j in range(n):
+                if grid2[i][j] and (i,j) not in d:
+                    d[(i,j)]=1
+                    q.append((i,j))
+                    f=1
+                    while q:
+                        x,y=q.pop(0)
+                        if grid2[x][y]==1:
+                            f=0
+                        for k in range(4):
+                            x1=x+l1[k]
+                            y1=y+l2[k]
+                            if 0<=x1<m and 0<=y1<n and (x1,y1) not in d and grid2[x1][y1]:
+                                if grid2[x1][y1]==1:
+                                    f=0
+                                d[(x1,y1)]=1
+                                q.append((x1,y1))
+                    if f:
+                        c+=1
+        return c
