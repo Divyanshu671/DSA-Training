@@ -1,0 +1,11 @@
+class Solution:
+    def reversePrefix(self, word: str, ch: str) -> str:
+        i=0
+        s=""
+        for i in range(len(word)):
+            s=word[i]+s
+            if word[i]==ch:
+                s+=word[i+1:]
+                word=s
+                break
+        return word
