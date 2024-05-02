@@ -1,0 +1,10 @@
+class Solution:
+    def findMaxK(self, nums: List[int]) -> int:
+        d={}
+        m=-1
+        for i in nums:
+            if i*-1 in d:
+                m=max(m,abs(i))
+            else:
+                d[i]=1
+        return m
