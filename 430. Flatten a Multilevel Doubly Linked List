@@ -1,0 +1,46 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* prev;
+    Node* next;
+    Node* child;
+};
+*/
+
+class Solution {
+public:
+    Node* flatten(Node* head) {
+        stack<Node*> s;
+        Node* ptr = head;
+        if(head==nullptr)
+            return head;
+        while(ptr){
+            if(ptr->child){
+                if(ptr->next)
+                    s.push(ptr->next);
+                ptr->next=ptr->child;
+                ptr->next->prev=ptr;
+                ptr->child=nullptr;
+            }
+            if(ptr->next==nullptr){
+                if(s.size()){
+                    ptr->next=s.top();
+                    ptr->next->prev=ptr;
+                    s.pop(); 
+                }
+                else{
+                    break;
+                }
+            }
+            ptr=ptr->next;
+        }
+        ptr=head->next;
+        while(ptr){
+            cout<<ptr->prev->val<<" ";
+            ptr=ptr->next;
+        }
+        return head;
+    }
+};
