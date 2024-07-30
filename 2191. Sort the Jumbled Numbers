@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> sortJumbled(vector<int>& mapping, vector<int>& nums) {
+        map<int,vector<int>> m;
+        set<int> s;
+        int sum,d,c;
+        int i,n=nums.size();
+        for(i=0;i<n;i++){
+            sum=0;
+            d=1;
+            c=nums[i];
+            if(c==0)
+                sum=mapping[c];
+            while(c){
+                sum=mapping[c%10]*d+sum;
+                c/=10;
+                d*=10;
+            }
+            m[sum].push_back(nums[i]);
+            s.insert(sum);
+        }
+        vector<int> v;
+        for(auto x : s){
+            for(auto y: m[x])
+                v.push_back(y);
+        }
+        return v;
+    }
+};
