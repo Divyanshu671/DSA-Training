@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        int c = 0;
+        queue<pair<long long, TreeNode*>> q;
+        set<pair<long long, TreeNode*>> s;
+        if (!root) {
+            return 0;
+        }
+        q.push({root->val, root});
+        while (q.size()) {
+            pair<int, TreeNode*> t = q.front();
+            if (t.first == targetSum) {
+                c++;
+            }
+            if (t.first <= pow(10,9)) {
+
+                if (t.second->left) {
+                    q.push({t.first + t.second->left->val, t.second->left});
+                    if (s.find({t.second->left->val, t.second->left}) ==
+                        s.end()) {
+                        q.push({t.second->left->val, t.second->left});
+                        s.insert({t.second->left->val, t.second->left});
+                    }
+                }
+                if (t.second->right) {
+                    q.push({t.first + t.second->right->val, t.second->right});
+                    if (s.find({t.second->right->val, t.second->right}) ==
+                        s.end()) {
+                        q.push({t.second->right->val, t.second->right});
+                        s.insert({t.second->right->val, t.second->right});
+                    }
+                }
+            }
+            q.pop();
+        }
+        return c;
+    }
+};
