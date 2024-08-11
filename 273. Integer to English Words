@@ -1,0 +1,28 @@
+class Solution:
+    def numberToWords(self, num: int) -> str:
+        zero = [""," One"," Two"," Three"," Four"," Five"," Six"," Seven"," Eight"," Nine"," Ten"," Eleven"," Twelve"," Thirteen"," Fourteen"," Fifteen"," Sixteen"," Seventeen"," Eighteen"," Nineteen"]
+
+        one = [""," Twenty"," Thirty"," Forty"," Fifty"," Sixty", " Seventy",
+        " Eighty", " Ninety"]
+
+        two = ["", " Thousand", " Million", " Billion"]
+        if num==0:
+            return "Zero"
+        s=""
+        c=""
+        i = 0
+        while (num):
+            a = num % 1000
+            if (a // 100):
+                c = zero[a // 100] + " Hundred"
+            if (a % 100 < 20):
+                c += zero[a % 100]
+            else:
+                c += one[(a % 100) // 10 - 1] + zero[a % 10]
+            if len(c):
+                c += two[i]
+            s = c + s
+            c = ""
+            i += 1
+            num //= 1000
+        return s[1:]
