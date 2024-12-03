@@ -1,0 +1,28 @@
+class Solution:
+    def makeConnected(self, n: int, connections: List[List[int]]) -> int:
+        if n-1>len(connections):
+            return -1
+        graph = defaultdict(list)
+
+        for x,y in connections:
+            graph[x].append(y)
+            graph[y].append(x)
+        
+        visit=[0]*n
+        
+        def bfs(node):
+            q=deque()
+            q.append(node)
+            while q:
+                p=q.pop()
+                for x in graph[p]:
+                    if visit[x]==0:
+                        visit[x]=1
+                        q.append(x)
+
+        count=0
+        for i in range(n):
+            if visit[i]==0:
+                count=count+1
+            bfs(i)
+        return count-1
