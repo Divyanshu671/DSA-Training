@@ -1,0 +1,13 @@
+class Solution:
+    def pickGifts(self, gifts: List[int], k: int) -> int:
+        h=[]
+        for i in gifts:
+            heappush(h,-1*i)
+        s=0
+        while k:
+            t=-1*heappop(h)
+            heappush(h,-1*math.floor(sqrt(t)))
+            k-=1
+        while h:
+            s+=heappop(h)*-1
+        return s
